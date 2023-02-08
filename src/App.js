@@ -7,7 +7,11 @@ function App() {
   const link = "https://www.Google.it";
 
   const handleClick = () => {
-    console.log("My first React function");
+    console.log("Hello!");
+  }
+
+  const handleClickAgain = (name) => {
+    console.log(`Hello ${name}`);
   }
 
   return (
@@ -27,6 +31,14 @@ function App() {
             left:"50%", 
             transform: "translate(-50%, -50%)", 
             marginTop:"50px" }}> Click me 
+          </button>
+
+          <button onClick = { () => { handleClickAgain('Romy') } } style = {{ 
+            position: "absolute", 
+            top:"50%", 
+            left:"50%", 
+            transform: "translate(-50%, -50%)", 
+            marginTop:"100px" }}> Click me again
           </button>
         </div>
 
