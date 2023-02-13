@@ -19,6 +19,7 @@ function App() {
   const title ="Welcome to the new blog";
   const like = Math.floor(Math.random() * 100);
   const link = "https://www.Google.it";
+  const author = ["Parigi", "Mario", "Giuseppina", "Anonymous", ""];
 
 
   // Functions 
@@ -38,13 +39,29 @@ function App() {
 
 
   // UseEffect
-  useEffect( () => {
+  useEffect(() => {
+
 
     fetch('https://jsonplaceholder.typicode.com/todos/')
-      .then(response => response.json())  // Parsing dei dati JSON in un oggetto Javascript
-      .then(json => console.log(json))  // Visualizza i dati come oggetto Javascript in console
+      .then(response => response.json()) // Parsing dei dati JSON in un oggetto Javascript
+      .then(json => {
 
-  }, [ name ] );
+        const itemsWithAuthor = json.map(item => {
+          
+          // Scegli un nome casuale dall'array author
+          const randomAuthor = author[Math.floor(Math.random() * author.length)];
+          
+          // Crea un nuovo oggetto con la proprietà autore
+          return {
+            ...item,
+            author: randomAuthor
+          };
+
+        });
+        setBlog(itemsWithAuthor);
+        
+      });
+  }, []);
 
 
   return (
@@ -67,7 +84,7 @@ function App() {
 
           <div class="second_list" style= {{ width:"50%" }}>
             
-            <BlogList blogs= { blogs.filter ( (blog) => blog.author === "mario" ) }> </BlogList>
+            <BlogList blogs= { blogs.filter ( (blog) => blog.author === "Mario" ) }> </BlogList>
 
           </div>
 
