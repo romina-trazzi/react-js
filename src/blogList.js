@@ -1,9 +1,5 @@
-const BlogList = (props) => {
-    
-    // Importiamo dal componente padre APP la lista dei blog
-    const blogs = props.blogs;
-    
-    console.log(blogs);
+const BlogList = ({blogs, deleteBlog}) => {
+
     
     return (  
 
@@ -13,11 +9,12 @@ const BlogList = (props) => {
 
             {/* Creiamo il template ciclando nell'array dei blogs */}
             
-            { blogs.map((blog) => (
+            {blogs.map((blog) => (
                 
                 <div key={blog.id}> 
                     <h3> {blog.title} </h3>
                     <p> Written by {blog.author} </p>
+                    <button onClick = { () => deleteBlog(blog.id) }> Delete Blog </button>
                 </div>
 
             ))}
@@ -29,3 +26,5 @@ const BlogList = (props) => {
 }
  
 export default BlogList;
+
+

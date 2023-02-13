@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import './App.css';
 import './blogList';
 import BlogList from './blogList';
@@ -32,7 +32,17 @@ function App() {
     setName(oldName);
   }
 
+  const deleteBlog = (id) => {
+    const newBlog = blogs.filter( (blog => blog.id !== id));
+    setBlog(newBlog);
+  }
+
+
+  // UseEffect
+
   
+
+
   return (
   
     <div className="App">
@@ -47,13 +57,13 @@ function App() {
 
           <div class="first_list" style= {{ width:"50%" }}>
             
-            <BlogList blogs={ blogs }> </BlogList>
+            <BlogList blogs= { blogs } deleteBlog= { deleteBlog }> </BlogList>
 
           </div>
 
           <div class="second_list" style= {{ width:"50%" }}>
             
-            <BlogList blogs={ blogs.filter ( (blog) => blog.author === "mario" ) }> </BlogList>
+            <BlogList blogs= { blogs.filter ( (blog) => blog.author === "mario" ) }> </BlogList>
 
           </div>
 
@@ -72,7 +82,7 @@ function App() {
 
           <button onClick = { () => { handleClickAgain('') }} > Click me again </button>
 
-          <button> Delete Blog </button>
+          
           
           {/* condizione ? true : false */}
           {/* { name === "" ? null : <p> Old name { name } </p> } */}
