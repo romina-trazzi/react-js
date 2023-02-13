@@ -3,6 +3,7 @@ const BlogList = (props) => {
     // Importiamo dal componente padre APP la lista dei blog
     const blogs = props.blogs;
     
+    console.log(blogs);
     
     return (  
 

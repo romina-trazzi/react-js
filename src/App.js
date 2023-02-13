@@ -43,22 +43,36 @@ function App() {
         
         <a href = { link } style = {{ color: "black", backgroundColor: "yellow" }} > Google Site </a>
 
-        <div className = "prova" style={{ position: "relative" }}> 
-          <button onClick = { handleClick } style = {{ 
-            position: "absolute", 
-            top:"50%", 
-            left:"50%", 
-            transform: "translate(-50%, -50%)", 
-            marginTop:"200px" }}> Click me 
-          </button>
+        <div className="home" style= {{ display: "flex", marginTop:"50px"}}> 
 
-          <button onClick = { () => { handleClickAgain('') }} style = {{ 
-            position: "absolute", 
-            top:"50%", 
-            left:"50%", 
-            transform: "translate(-50%, -50%)", 
-            marginTop:"300px" }}> Click me again
-          </button>
+          <div class="first_list" style= {{ width:"50%" }}>
+            
+            <BlogList blogs={ blogs }> </BlogList>
+
+          </div>
+
+          <div class="second_list" style= {{ width:"50%" }}>
+            
+            <BlogList blogs={ blogs.filter ( (blog) => blog.author === "mario" ) }> </BlogList>
+
+          </div>
+
+
+          
+        </div>
+
+        <div className = "buttons" style= {{ 
+          display: "flex",
+          justifyContent:"space-around",
+          alignItems: "center",
+          width: "100%",
+          marginTop: "80px" }} > 
+          
+          <button onClick = { handleClick }> Click me </button>
+
+          <button onClick = { () => { handleClickAgain('') }} > Click me again </button>
+
+          <button> Delete Blog </button>
           
           {/* condizione ? true : false */}
           {/* { name === "" ? null : <p> Old name { name } </p> } */}
@@ -66,11 +80,6 @@ function App() {
           {/* Rendering conditional */}
           { name && <p> Old name { name } </p> }
 
-          <div className="home"> 
-
-            <BlogList blogs={ blogs }> </BlogList>
-          
-          </div>
 
         </div>
 
