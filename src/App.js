@@ -13,6 +13,8 @@ function App() {
     { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
 
   ]);
+
+  const [isPending, setIsPending] = useState(true);
   
 
   // Non reactive variables
@@ -59,6 +61,7 @@ function App() {
 
         });
         setBlog(itemsWithAuthor);
+        setIsPending(false);
         
       });
   }, []);
@@ -77,13 +80,15 @@ function App() {
         <div className="home" style= {{ display: "flex", marginTop:"50px"}}> 
 
           <div class="first_list" style= {{ width:"50%" }}>
-            
+
+            { isPending && <div> Data are loading </div> }
             <BlogList blogs= { blogs } deleteBlog= { deleteBlog }> </BlogList>
 
           </div>
 
           <div class="second_list" style= {{ width:"50%" }}>
             
+            { isPending && <div> Data are loading </div> }
             <BlogList blogs= { blogs.filter ( (blog) => blog.author === "Mario" ) }> </BlogList>
 
           </div>
