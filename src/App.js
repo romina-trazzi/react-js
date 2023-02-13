@@ -1,6 +1,5 @@
 import { useState, useEffect} from 'react';
 import './App.css';
-import './blogList';
 import BlogList from './blogList';
 
 function App() {
@@ -39,8 +38,12 @@ function App() {
 
 
   // UseEffect
+  useEffect( () => {
+    
+    console.log("Use effect is running");
+    console.log(blogs);
 
-  
+  } );
 
 
   return (
