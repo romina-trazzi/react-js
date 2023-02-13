@@ -39,11 +39,12 @@ function App() {
 
   // UseEffect
   useEffect( () => {
-    
-    console.log("Use effect is running");
-    console.log(blogs);
 
-  } );
+    fetch('https://jsonplaceholder.typicode.com/todos/')
+      .then(response => response.json())  // Parsing dei dati JSON in un oggetto Javascript
+      .then(json => console.log(json))  // Visualizza i dati come oggetto Javascript in console
+
+  }, [ name ] );
 
 
   return (
