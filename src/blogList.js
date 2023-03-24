@@ -1,3 +1,6 @@
+import Blogdetail from "./blogDetail";
+import { randomUserId } from "./utils";
+
 const BlogList = ({blogs, deleteBlog}) => {
 
     
@@ -9,13 +12,9 @@ const BlogList = ({blogs, deleteBlog}) => {
 
             {/* Creiamo il template ciclando nell'array dei blogs */}
             
-            {blogs.map((blog) => (
+            {blogs.map((elem) => (
                 
-                <div key={blog.id}> 
-                    <h3> {blog.title} </h3>
-                    <p> Written by {blog.author} </p>
-                    <button onClick = { () => deleteBlog(blog.id) }> Delete Blog </button>
-                </div>
+                <Blogdetail blog= { elem } deleteBlog= { deleteBlog } key= {randomUserId()} />
 
             ))}
 

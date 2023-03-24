@@ -1,6 +1,7 @@
 import { useState, useEffect} from 'react';
 import './App.css';
 import BlogList from './blogList';
+import { fetchData } from './utils';
 
 function App() {
   
@@ -21,7 +22,7 @@ function App() {
   const title ="Welcome to the new blog";
   const like = Math.floor(Math.random() * 100);
   const link = "https://www.Google.it";
-  const author = ["Parigi", "Mario", "Giuseppina", "Anonymous", ""];
+  const author = ["Parigi", "mario", "Giuseppina", "Anonymous", ""];
 
 
   // Functions 
@@ -43,27 +44,8 @@ function App() {
   // UseEffect
   useEffect(() => {
 
+    fetchData(author, setBlog, setIsPending);
 
-    fetch('https://jsonplaceholder.typicode.com/todos/')
-      .then(response => response.json()) // Parsing dei dati JSON in un oggetto Javascript
-      .then(json => {
-
-        const itemsWithAuthor = json.map(item => {
-          
-          // Scegli un nome casuale dall'array author
-          const randomAuthor = author[Math.floor(Math.random() * author.length)];
-          
-          // Crea un nuovo oggetto con la proprietà autore
-          return {
-            ...item,
-            author: randomAuthor
-          };
-
-        });
-        setBlog(itemsWithAuthor);
-        setIsPending(false);
-        
-      });
   }, []);
 
 
@@ -72,24 +54,24 @@ function App() {
     <div className="App">
       <div className="content">
 
-        <h1>{  title } </h1>
+        <h1> { title } </h1>
         <p> Liked { like } times </p>
         
         <a href = { link } style = {{ color: "black", backgroundColor: "yellow" }} > Google Site </a>
 
-        <div className="home" style= {{ display: "flex", marginTop:"50px"}}> 
+        <div className='home divano' style= {{ display: "flex", marginTop:"50px" }}> 
 
-          <div class="first_list" style= {{ width:"50%" }}>
+          <div className="first_list" style= {{ width:"50%" }}>
 
             { isPending && <div> Data are loading </div> }
             <BlogList blogs= { blogs } deleteBlog= { deleteBlog }> </BlogList>
 
           </div>
 
-          <div class="second_list" style= {{ width:"50%" }}>
+          <div className="second_list" style= {{ width:"50%" }}>
             
             { isPending && <div> Data are loading </div> }
-            <BlogList blogs= { blogs.filter ( (blog) => blog.author === "Mario" ) }> </BlogList>
+            <BlogList blogs= { blogs.filter ( (blog) => blog.author === "mario" ) }  deleteBlog= { deleteBlog }> </BlogList>
 
           </div>
 
